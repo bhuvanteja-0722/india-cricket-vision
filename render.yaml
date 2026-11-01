@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: india-cricket-vision
+    runtime: python
+    plan: free
+    rootDir: webapp
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: python run_local.py
+    healthCheckPath: /api/health
+    envVars:
+      - key: OMP_NUM_THREADS
+        value: "1"
+      - key: MKL_NUM_THREADS
+        value: "1"
+      - key: OPENBLAS_NUM_THREADS
+        value: "1"
+      - key: TORCH_HOME
+        value: /tmp/torch-cache
