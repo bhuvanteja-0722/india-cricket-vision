@@ -85,7 +85,7 @@ class Handler(BaseHTTPRequestHandler):
         raw = self.rfile.read(length)
         boundary = (match.group(1) or match.group(2)).encode()
         parts = raw.split(b"--" + boundary)
-        image_data = next((part.split(b"\\r\\n\\r\\n",1)[1].rsplit(b"\\r\\n",1)[0] for part in parts if b'name="file"' in part and b"\\r\\n\\r\\n" in part), None)
+        image_data = next((part.split(b"\r\n\r\n",1)[1].rsplit(b"\r\n",1)[0] for part in parts if b'name="file"' in part and b"\r\n\r\n" in part), None)
         if image_data is None: self.send_json(400, {"detail":"No image was attached."}); return
         try:
             image = Image.open(BytesIO(image_data)); image.verify(); image = Image.open(BytesIO(image_data))
