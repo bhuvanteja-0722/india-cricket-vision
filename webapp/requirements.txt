@@ -1,0 +1,7 @@
+torch==2.9.0
+torchvision==0.24.0
+facenet-pytorch==2.5.2
+numpy>=1.26
+Pillow>=10.4
+scikit-learn>=1.5
+joblib>=1.3

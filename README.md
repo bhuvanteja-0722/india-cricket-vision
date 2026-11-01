@@ -1,63 +1,25 @@
-# Indian Cricket Team Face Identification
+# Indian Cricketer Face Recognition Project
 
-This project builds a **face recognition** system that can identify Indian cricket team members from a photograph.
+India Cricket Vision is a local face-matching web app for Indian cricketer portraits. The runnable app and bundled inference model are in [`webapp/`](webapp/).
 
-## Features
-- Uses a pre‑trained **EfficientNet‑B0** backbone fine‑tuned on the provided cricketer face dataset.
-- Simple training script (`train.py`) with validation, checkpointing and learning‑rate scheduling.
-- Inference script (`predict.py`) that takes an image, detects the face (MTCNN) and returns the predicted player name.
-- Interactive **Streamlit** UI (`app.py`) with a **BCCI theme** – the background shows famous Indian cricket stadiums and trophy‑lifting photos.
-- Model, label‑encoder and inference code are packaged in the `models/` folder for easy deployment.
+## Run the web app
 
-## Directory layout
-```
-cricket_face_id/
-│   README.md
-│   requirements.txt
-│
-└───src/
-    │   train.py
-    │   predict.py
-    │   app.py
-    │   utils.py
-    │
-    └───models/   # generated after training
-│
-└───data/          # symbolic link or copy of the Kaggle dataset
+```bash
+cd webapp
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+TORCH_HOME="$PWD/.torch-cache" python run_local.py
 ```
 
-## Getting started
-1. **Create a virtual environment** and install dependencies:
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # macOS/Linux
-   pip install -r requirements.txt
-   ```
-2. **Prepare the data** – the script expects the dataset in the following structure (already present in your downloads):
-   ```
-   data/
-   └───<player_name>/
-       ├── img1.jpg
-       ├── img2.jpg
-       …
-   ```
-   You can create a symlink:
-   ```bash
-   ln -s "/Users/bhuvantejaponakala/Downloads/indian cricketer" cricket_face_id/data
-   ```
-3. **Train the model**:
-   ```bash
-   python src/train.py --data_dir data --epochs 20 --batch_size 32
-   ```
-   The best checkpoint will be saved to `src/models/best.pt`.
-4. **Run the web app**:
-   ```bash
-   streamlit run src/app.py
-   ```
-   Upload a player photo and the app will display the identified name on a BCCI‑styled background.
+Open <http://127.0.0.1:8000>. The first launch downloads FaceNet VGGFace2 encoder weights; later launches use the local cache. Set `PORT=8001` to choose another port.
 
-## Customising the theme
-Replace the URLs in `app.py` (`STADIUM_IMG_URL` and `TROPHY_IMG_URL`) with your own high‑resolution images of Indian stadiums or trophy‑lifting moments.
+The app includes a 323-class calibrated LinearSVC classifier and metrics from the supplied completed run. It reports 72.8% held-out test accuracy and 68.4% test macro-F1 on 7,674 usable images. The Kaggle dataset is needed for retraining, but not for running inference. Uploads are processed locally; the preview clears after analysis, while up to 12 compressed thumbnails and results are kept in browser local storage.
 
----
-*Built with PyTorch, torchvision, facenet‑pytorch (MTCNN) and Streamlit.*
+Model scores rank the known classes; they are not verified identity probabilities, and unknown-player rejection has not been validated.
+
+## Data and credits
+
+The training dataset is [Indian Cricketers Dataset on Kaggle](https://www.kaggle.com/datasets/aviratgupta/indian-cricketers-dataset). Image and logo sources and licenses are listed in [`webapp/Background image credits.md`](webapp/Background%20image%20credits.md).
+
+This is an independent educational project and is not affiliated with BCCI or ICC.

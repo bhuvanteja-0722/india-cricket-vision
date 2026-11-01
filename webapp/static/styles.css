@@ -1,0 +1,91 @@
+:root{--bg:#061426;--panel:#0c2340;--blue:#1689e8;--gold:#e8b95b;--muted:#a6b7ca}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;background:var(--bg);color:#f5f7fb;font-family:'DM Sans',sans-serif}
+header{height:78px;padding:0 7vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff20;position:sticky;top:0;background:#061426f2;z-index:5;backdrop-filter:blur(14px)}
+.brand{color:white;text-decoration:none;display:flex;align-items:center;gap:13px;font:800 20px/.95 'Barlow Condensed';letter-spacing:1px;white-space:nowrap}
+.brand img{width:42px;height:42px;object-fit:contain}
+.brand b{color:var(--gold)}
+.brand small{display:block;margin-top:5px;font:8px 'DM Sans';color:var(--muted);letter-spacing:1.7px}
+nav{display:flex;gap:28px}
+nav a,.hero-link{color:#c6d1df;text-decoration:none;font-size:10px;letter-spacing:1px}
+nav a:hover,.hero-link:hover{color:var(--gold)}
+.online,.gold{color:var(--gold);font-size:10px;letter-spacing:1.5px}
+.hero{min-height:620px;padding:90px 9vw 54px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(220px,.85fr);align-items:center;gap:35px;position:relative;overflow:hidden;background:linear-gradient(90deg,#061426 0%,#061426ed 24%,#061426a8 48%,#06142620 100%),url('/static/trophy-vision.jpg') center/cover}
+.hero-copy{position:relative;z-index:1}
+.hero h1{font:800 clamp(64px,8vw,112px)/.82 'Barlow Condensed';margin:25px 0}
+.hero h1 em,h2 em{color:var(--gold);font-style:normal}
+.hero p,section>p{color:#b7c6d7;line-height:1.8;font-size:13px;max-width:570px}
+.btn{display:inline-block;border:0;background:linear-gradient(100deg,#0878cf,#1b9ae9);color:white;padding:16px 24px;margin-top:20px;font-weight:700;font-size:10px;letter-spacing:1px;text-decoration:none;cursor:pointer}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.hero-link{display:inline-block;margin-left:23px}
+.hero-caption{align-self:end;justify-self:end;padding:14px 18px;border-left:2px solid var(--gold);background:#0614268c;text-align:right;position:relative;z-index:1}
+.hero-caption span{display:block;color:#e4b957;font-size:9px;letter-spacing:2px}
+.hero-caption b{display:block;margin-top:7px;font:700 22px/.9 'Barlow Condensed';letter-spacing:1px}
+.hero-note{position:absolute;left:9vw;bottom:18px;color:#c0cbd8;font-size:9px;letter-spacing:.4px}
+.stats{display:flex;gap:35px;margin-top:42px}
+.stats b{display:block;font:700 27px 'Barlow Condensed'}
+.stats small{font-size:8px;color:#c5d1de;letter-spacing:1px}
+section{padding:78px 9vw;border-top:1px solid #ffffff18}
+.photo-section{background-position:center;background-size:cover;background-attachment:scroll}
+.identify-section{background-image:linear-gradient(90deg,#061426c9,#061426ad),url('/static/background-wankhede.png');background-position:center,center 58%;background-size:cover,auto 145%}
+.history-section{background-image:linear-gradient(90deg,#061426c9,#061426ad),url('/static/background-lords.png')}
+.insights-section{background-image:linear-gradient(90deg,#061426c9,#061426ad),url('/static/background-hpca.png');background-position:center,center 62%}
+.grounds-section{background-image:linear-gradient(90deg,#061426e8,#061426c9),url('/static/mcg.jpg')}
+h2{font:700 clamp(42px,5vw,65px) 'Barlow Condensed';margin:12px 0}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.panel{background:linear-gradient(145deg,#0c2340f2,#081b30f2);border:1px solid #ffffff2b;padding:25px;min-height:300px;box-shadow:0 18px 50px #0004}
+.drop{border:1px dashed #6c8eaf;min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;background:#07182ab8;text-align:center;padding:16px}
+.drop.is-dragover{border:1px solid var(--gold);background:#0d2a46ed;box-shadow:inset 0 0 0 1px #e8b95b66,0 0 28px #e8b95b22}
+.drop>b{font-size:42px;color:var(--gold)}
+.drop h3{font:700 22px 'Barlow Condensed';margin:8px 0}
+.drop p,.drop small,#status{color:#a7bbd0;font-size:10px}
+.drop button{background:none;border:0;color:var(--gold);cursor:pointer;text-decoration:underline}
+.drop img{max-width:100%;max-height:180px;object-fit:contain;margin-top:12px}
+.result{display:grid;place-items:center;background:linear-gradient(145deg,#0c2340f2,#081b30f2)}
+.result h2{font-size:45px}
+.privacy-note{font-size:10px;color:#98acc2;line-height:1.6}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px}
+.metrics article{background:#0c2340ed;border:1px solid #ffffff2b;padding:20px}
+.metrics small{font-size:9px;color:var(--gold);letter-spacing:1px}
+.metrics b{display:block;font:700 38px 'Barlow Condensed';margin-top:10px}
+.model-charts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.chart-card{background:#091c31ee;border:1px solid #ffffff2b;padding:20px;box-shadow:0 14px 38px #0003}
+.chart-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:14px}
+.chart-heading h3{font:700 25px 'Barlow Condensed';margin:5px 0 0}
+.chart-heading>span{font-size:9px;color:#b8c8d9;white-space:nowrap}
+.bar-chart{display:flex;align-items:stretch;gap:15px;height:220px;margin-top:20px;padding:12px 8px 30px;position:relative;border-bottom:1px solid #ffffff55;background:linear-gradient(to top,transparent 24.6%,#ffffff18 25%,transparent 25.4%,transparent 49.6%,#ffffff18 50%,transparent 50.4%,transparent 74.6%,#ffffff18 75%,transparent 75.4%)}
+.bar-row{position:relative;z-index:1;display:flex;flex:1;min-width:0;flex-direction:column;align-items:center;justify-content:flex-end;gap:5px}
+.bar-label{order:3;max-width:100%;font-size:10px;line-height:1.2;color:#b8c8d9;text-align:center}
+.bar-track{order:2;display:flex;align-items:flex-end;justify-content:center;flex:1;width:min(58px,82%);min-height:0;overflow:hidden}
+.bar-fill{display:block;width:100%;min-height:2px;background:linear-gradient(180deg,#39a8fb,#167ac4);transition:height .35s ease}
+.bar-fill.selected,.bar-fill.test{background:linear-gradient(90deg,#b68c42,#f0ca71)}
+.bar-value{order:1;text-align:center;color:#f5f7fb;font:700 15px 'Barlow Condensed'}
+.graph-note{font-size:10px;color:#9eb2c8;line-height:1.6;margin:18px 0 0}
+.section-heading-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.section-heading-row p{color:#b7c6d7;line-height:1.7;font-size:13px}
+.outline-btn{border:1px solid #c29a4c;color:var(--gold);background:#061426cc;padding:12px 16px;font-weight:700;font-size:9px;letter-spacing:1px;cursor:pointer}
+.outline-btn:hover{background:#e8b95b;color:#061426}
+.history-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:24px}
+.history-card{display:grid;grid-template-columns:92px 1fr;gap:13px;align-items:center;background:#0a1b2feF;border:1px solid #ffffff2b;padding:12px;min-width:0}
+.history-card img{width:92px;height:92px;object-fit:cover;background:#061426}
+.history-card h3{font:700 21px 'Barlow Condensed';margin:3px 0;color:#fff}
+.history-card p{font-size:10px;color:#b6c6d8;margin:5px 0}
+.history-card .score{color:var(--gold);font:700 18px 'Barlow Condensed'}
+.history-empty{padding:24px;border:1px dashed #ffffff45;color:#b7c6d7;font-size:12px}
+.venues{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:28px}
+.venues article{height:210px;padding:18px;display:flex;flex-direction:column;justify-content:end;gap:8px;background-size:cover;background-position:center;position:relative;border:1px solid #ffffff4a}
+.venues article:before{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#04101fee,transparent 78%)}
+.venues article>*{z-index:1}
+.venues small{font-size:8px;color:var(--gold);letter-spacing:1px}
+.venues b{font:700 24px/.95 'Barlow Condensed'}
+.w,.l,.h{grid-column:span 2}.m,.n{grid-column:span 3}.e,.s{grid-column:span 3}
+.w{background-image:url('/static/wankhede.jpg')}.l{background-image:url('/static/lords.jpg')}.h{background-image:url('/static/hpca.jpg')}.m{background-image:url('/static/mcg.jpg')}.n{background-image:url('/static/narendra-modi.jpg')}.e{background-image:url('/static/eden-gardens.jpg')}.s{background-image:url('/static/sydney-cricket-ground.jpg')}
+footer{padding:25px 9vw;border-top:1px solid #ffffff20;color:#a7b8cb;font-size:10px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;background:#061426}
+.footer-brand{font-size:17px}
+.footer-brand img{width:36px;height:36px}
+.credits{flex:1;min-width:250px;max-width:620px}
+.credits summary{cursor:pointer;text-decoration:underline;color:#d6e0eb}
+.credits p{line-height:1.8;color:#9aabc0}
+.credits a{color:#e8b95b}
+@media(max-width:760px){header{padding:0 5vw}.brand{font-size:16px;gap:9px}.brand img{width:36px;height:36px}.brand small{font-size:7px;letter-spacing:1px}header nav{display:none}.hero{grid-template-columns:1fr;min-height:690px;padding:65px 7vw 55px;background-position:60% center}.hero-caption{justify-self:start;text-align:left;margin-top:15px}.hero-note{left:7vw}.hero h1{font-size:clamp(58px,14vw,88px)}.stats{gap:17px;margin-top:32px}.stats b{font-size:23px}section{padding:62px 6vw}.columns,.model-charts{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.bar-chart{gap:8px;height:210px;padding-left:2px;padding-right:2px}.bar-track{width:min(48px,88%)}.bar-label{font-size:9px}.bar-value{font-size:14px}.chart-card{padding:16px}.chart-heading h3{font-size:23px}.chart-heading>span{font-size:8px}.venues{grid-template-columns:1fr 1fr}.venues article,.w,.l,.h,.m,.n,.e,.s{grid-column:span 1}.section-heading-row{align-items:flex-start;flex-direction:column}.history-list{grid-template-columns:1fr}footer{padding:24px 6vw}}

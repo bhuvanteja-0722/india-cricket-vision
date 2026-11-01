@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>India Cricket Vision</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+<header>
+  <a class="brand" href="#top" aria-label="India Cricket Vision home">
+    <img src="/static/bcci-logo.svg" alt="BCCI logo">
+    <span>INDIA <b>CRICKET VISION</b><small>PLAYER INTELLIGENCE · RESEARCH EDITION</small></span>
+  </a>
+  <nav>
+    <a href="#identify">IDENTIFY</a>
+    <a href="#history">HISTORY</a>
+    <a href="#insights">MODEL LAB</a>
+    <a href="#venues">GROUNDS</a>
+  </nav>
+  <span class="online">● SYSTEM ONLINE</span>
+</header>
+<main id="top">
+  <section class="hero">
+    <div class="hero-copy">
+      <small class="gold">FACE IDENTIFICATION · INDIAN CRICKETERS</small>
+      <h1>A FACE MATCH.<br><em>NOT A GUESS.</em></h1>
+      <p>A local computer-vision lab built around the Indian cricketers dataset. Upload a portrait to see the model’s closest roster match, then inspect the evidence behind its score.</p>
+      <a class="btn" href="#identify">OPEN MATCH CENTRE ↗</a>
+      <a class="hero-link" href="#insights">Explore model results ↓</a>
+      <div class="stats">
+        <span><b id="players">—</b><small>PLAYER CLASSES</small></span>
+        <span><b id="accuracy">—</b><small>HELD-OUT TEST</small></span>
+        <span><b id="datasetImages">—</b><small>DATASET IMAGES</small></span>
+      </div>
+    </div>
+    <div class="hero-caption"><span>INDIA · THE HOME OF CRICKET</span><b>ONE TEAM.<br>ONE DREAM.</b></div>
+    <small class="hero-note">Illustrative celebration visual · not an archival team photograph</small>
+  </section>
+
+  <section id="identify" class="photo-section identify-section">
+    <small class="gold">01 / IDENTIFY</small>
+    <h2>Read the <em>face.</em></h2>
+    <p>One clear face, good light, and a little cricket history. The model returns a ranked shortlist—not a claim of certainty.</p>
+    <div class="columns">
+      <div class="panel">
+        <div class="drop" id="drop">
+          <input id="file" type="file" accept="image/png,image/jpeg,image/webp" hidden>
+          <b>＋</b><h3>DROP A PLAYER PORTRAIT</h3>
+          <p>or <button id="browse" type="button">browse files</button></p>
+          <small>JPG · PNG · WEBP / MAX 12 MB</small>
+          <img id="preview" alt="Selected portrait preview" hidden>
+        </div>
+        <button id="analyse" class="btn" disabled>ANALYSE IMAGE →</button>
+        <p id="status">Checking model…</p>
+        <p class="privacy-note">Your image is analysed locally and then cleared from the upload preview. A small thumbnail and result are kept in this browser’s history.</p>
+      </div>
+      <div class="panel result" id="result">
+        <div><small class="gold">MATCH CENTRE</small><h2>AWAITING<br><em>YOUR IMAGE.</em></h2><p>Your leading match, face-detection status and alternatives will appear here.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="history" class="photo-section history-section">
+    <small class="gold">02 / YOUR LOCAL HISTORY</small>
+    <div class="section-heading-row"><div><h2>Images you’ve <em>kept.</em></h2><p>Recent analysed portraits stay on this browser only.</p></div><button id="clearHistory" class="outline-btn" type="button">CLEAR HISTORY</button></div>
+    <div id="historyList" class="history-list" aria-live="polite"></div>
+    <p id="historyEmpty" class="history-empty">No saved analyses yet. Your next match will appear here.</p>
+  </section>
+
+  <section id="insights" class="photo-section insights-section">
+    <small class="gold">03 / MODEL LAB</small>
+    <h2>Performance, <em>measured.</em></h2>
+    <p>Numbers are populated from the supplied completed training run. Held-out test results are separate from model-selection scores.</p>
+    <div class="metrics">
+      <article><small>HELD-OUT TEST ACCURACY</small><b id="testAccuracy">—</b></article>
+      <article><small>TRAINING FIT ACCURACY</small><b id="trainAccuracy">—</b></article>
+      <article><small>VALIDATION ACCURACY</small><b id="validationAccuracy">—</b></article>
+      <article><small>TEST MACRO F1</small><b id="testF1">—</b></article>
+      <article><small>DATASET IMAGES</small><b id="mimages">—</b></article>
+      <article><small>PLAYER CLASSES</small><b id="mclasses">—</b></article>
+    </div>
+    <div class="model-charts">
+      <article class="chart-card">
+        <div class="chart-heading"><div><small class="gold">MODEL MONITOR</small><h3>Accuracy by data split</h3></div><span>● measured accuracy</span></div>
+        <div id="splitChart" class="bar-chart" role="img" aria-label="Accuracy by training, validation, and held-out test split"></div>
+        <p class="graph-note">Training and validation guide model selection. The test split is held out for final evaluation.</p>
+      </article>
+      <article class="chart-card">
+        <div class="chart-heading"><div><small class="gold">VALIDATION ONLY</small><h3>Classifier selection</h3></div><span>● macro F1</span></div>
+        <div id="classifierChart" class="bar-chart" role="img" aria-label="Validation macro F1 for each classifier candidate"></div>
+        <p class="graph-note">The selected C value is chosen by validation macro F1, not by test performance.</p>
+      </article>
+      <article class="chart-card">
+        <div class="chart-heading"><div><small class="gold">HELD-OUT TEST</small><h3>Top-match score bands</h3></div><span>● image count</span></div>
+        <div id="scoreChart" class="bar-chart" role="img" aria-label="Held-out test images grouped by top-match score band"></div>
+        <p class="graph-note">Scores rank the known classes; they are not verified probabilities, and unknown-player rejection has not been validated.</p>
+      </article>
+    </div>
+    <p id="modelstate" class="gold">MODEL NOT TRAINED YET</p>
+  </section>
+
+  <section id="venues" class="photo-section grounds-section">
+    <small class="gold">04 / THE WORLD GAME</small>
+    <h2>From every <em>corner.</em></h2>
+    <p>Seven landmark grounds. One shared love of cricket.</p>
+    <div class="venues">
+      <article class="w"><small>MUMBAI · INDIA</small><b>WANKHEDE STADIUM</b></article>
+      <article class="l"><small>ST JOHN’S WOOD · ENGLAND</small><b>LORD’S CRICKET GROUND</b></article>
+      <article class="h"><small>DHARAMSHALA · INDIA</small><b>HPCA STADIUM</b></article>
+      <article class="m"><small>MELBOURNE · AUSTRALIA</small><b>MELBOURNE CRICKET GROUND</b></article>
+      <article class="n"><small>AHMEDABAD · INDIA</small><b>NARENDRA MODI STADIUM</b></article>
+      <article class="e"><small>KOLKATA · INDIA</small><b>EDEN GARDENS</b></article>
+      <article class="s"><small>SYDNEY · AUSTRALIA</small><b>SYDNEY CRICKET GROUND</b></article>
+    </div>
+  </section>
+</main>
+<footer>
+  <a class="brand footer-brand" href="#top"><img src="/static/bcci-logo.svg" alt="BCCI logo"><span>INDIA <b>CRICKET VISION</b><small>INDEPENDENT COMPUTER-VISION PROJECT</small></span></a>
+  <details class="credits"><summary>Photo credits &amp; licenses</summary><p><a href="https://commons.wikimedia.org/wiki/File:Wankhede_Stadium_as_seen_from_Marine_Lines,_Mumbai.jpg">Wankhede — DesiBoy101, CC BY 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Lords_Cricket_Ground.jpg">Lord’s — Shryta234, CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:HPCA_Stadium_Dharamshala.jpg">HPCA — BibhasCD, CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Melbourne_Cricket_Ground_04.jpg">MCG — Leighhubbard, CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Narendra_Modi_Stadium_Ahmedabad.jpg">Narendra Modi Stadium — Ishi6181, CC0</a> · <a href="https://commons.wikimedia.org/wiki/File:Eden_Gardens_during_IPL_match_04.jpg">Eden Gardens — Tarunsamanta, CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:%281%29Sydney_Cricket_Ground.jpg">Sydney Cricket Ground — Sardaka, CC BY-SA 4.0</a>. Attribution and license links are provided with each original image. BCCI logo belongs to the Board of Control for Cricket in India. Hero image is an original illustrative visual.</p></details>
+  <span>Not affiliated with BCCI or ICC · © 2026 India Cricket Vision</span>
+</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>
