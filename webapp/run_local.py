@@ -85,7 +85,7 @@ class Handler(BaseHTTPRequestHandler):
         raw = self.rfile.read(length)
         boundary = (match.group(1) or match.group(2)).encode()
         parts = raw.split(b"--" + boundary)
-        image_data = next((part.split(b"\r\n\r\n",1)[1].rsplit(b"\r\n",1)[0] for part in parts if b'name="file"' in part and b"\r\n\r\n" in part), None)
+        image_data = next((part.split(b"\\r\\n\\r\\n",1)[1].rsplit(b"\\r\\n",1)[0] for part in parts if b'name="file"' in part and b"\\r\\n\\r\\n" in part), None)
         if image_data is None: self.send_json(400, {"detail":"No image was attached."}); return
         try:
             image = Image.open(BytesIO(image_data)); image.verify(); image = Image.open(BytesIO(image_data))
@@ -101,5 +101,6 @@ if __name__ == "__main__":
     print(f"Loading FaceNet classifier on {DEVICE}...", flush=True)
     predictor = Predictor()
     port = int(os.environ.get("PORT", "8000"))
-    print("Model ready: %s classes. Opening http://127.0.0.1:%s" % (len(predictor.classes), port), flush=True)
-    ThreadingHTTPServer(("127.0.0.1", port), Handler).serve_forever()
+    host = "0.0.0.0"
+    print(f"Model ready: {len(predictor.classes)} classes. Server listening on {host}:{port}", flush=True)
+    ThreadingHTTPServer((host, port), Handler).serve_forever()
